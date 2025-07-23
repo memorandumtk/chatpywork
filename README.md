@@ -86,6 +86,25 @@ Amazon CloudWatch EventsとLambdaを使って業務の最初と最後に簡単�
 
 [workstartendbot](https://github.com/tannakaken/workstartendbot)
 
+# Example (async_room.py)
+
+### コンテキストマネージャ内での使用例 (推奨)
+
+この方法であれば、非同期処理の利点を活かしつつ、httpx.AsyncClientを自動的に閉じてくれるので、リソースの管理が容易です。
+
+```python
+async with AsyncRoom(room_id="xxx", api_key="yyy") as room:
+    await room.send_message("こんにちは！")
+```
+
+### 既存のhttpx.AsyncClientを使う例
+
+```python
+async with httpx.AsyncClient() as client:
+    async with AsyncRoom(room_id="xxx", api_key="yyy", client=client) as room:
+        await room.send_message("こんにちは！")
+```
+
 # Author
 淡中☆圏 \<tannakaken@gmail.com\>
 
