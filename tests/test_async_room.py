@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from chatpywork import async_room
-from chatpywork.response_types import SendMessageResponse, SendFileResponse, SendTaskResponse, ErrorResponse
+from chatpywork.types.response import SendMessageResponse, SendFileResponse, SendTaskResponse, ErrorResponse
 
 # Load environment variables for Chatwork credentials
 ROOMID = os.environ.get("CHATPYWORK_ROOMID")
@@ -128,7 +128,7 @@ class TestAsyncRoom(unittest.IsolatedAsyncioTestCase):
         timestamp = self.get_timestamp()
         file_content = f"binarydata - {timestamp}".encode("utf-8")
         message_content = f"バイナリ送信テスト - {timestamp}"
-        
+
         with tempfile.NamedTemporaryFile(delete=False, suffix=".bin") as tmp_file:
             tmp_file.write(file_content)
             tmp_filepath = Path(tmp_file.name)
@@ -168,7 +168,7 @@ class TestAsyncRoom(unittest.IsolatedAsyncioTestCase):
         timestamp = self.get_timestamp()
         file_content = f"テキストファイルテスト - {timestamp}\nLine 2\nLine 3"
         message_content = f"テキスト送信テスト - {timestamp}"
-        
+
         with tempfile.NamedTemporaryFile(delete=False, suffix=".txt", mode="w", encoding="utf-8") as tmp_file:
             tmp_file.write(file_content)
             tmp_filepath = Path(tmp_file.name)
@@ -182,7 +182,7 @@ class TestAsyncRoom(unittest.IsolatedAsyncioTestCase):
             self.assertIsInstance(resp, SendFileResponse, f"Expected SendFileResponse, got {type(resp)}: {resp}")
             self.assertIsNotNone(resp.file_id, "File ID should not be None")
             await asyncio.sleep(FILE_OPERATION_INTERVAL_TIME)
- 
+
         os.remove(tmp_filepath) # 一時ファイルの削除
 
 

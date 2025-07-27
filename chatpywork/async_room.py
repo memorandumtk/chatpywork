@@ -12,7 +12,7 @@ from typing import Any, Callable, Mapping, Optional, TypeVar, Union
 
 import httpx
 
-from .types import (
+from .types.common import (
     ApiKey,
     CsvArray,
     FilePath,
@@ -24,7 +24,7 @@ from .types import (
     ToDict,
     ToIds,
 )
-from .response_types import ErrorResponse, SendFileResponse, SendMessageResponse, SendTaskResponse
+from .types.response import ErrorResponse, SendFileResponse, SendMessageResponse, SendTaskResponse
 
 BASE_URL = "https://api.chatwork.com/v2"
 FILE_LIMIT = 5 * 1024 * 1024  # 5 MiB
