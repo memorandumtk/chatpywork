@@ -241,9 +241,13 @@ class TestAsyncRoom(unittest.IsolatedAsyncioTestCase):
 if __name__ == "__main__":
     # テスト実行方法:
     # 1. 'httpx' および 'chatpywork'（自作パッケージ）がインストールされていることを確認してください。
+    #    chatpywork のコードベースのルートディレクトリで以下を実行:
+    #       pip install -r requirements.txt
+    #       pip install -e .
     # 2. 以下の環境変数を設定してください:
     #    CHATPYWORK_ROOMID = <ChatworkのルームID>
     #    CHATPYWORK_APIKEY = <ChatworkのAPIキー>
     #    CHATPYWORK_TOID = <タスク用のユーザーID>
-    # 3. テストファイルを実行: python your_test_file.py
+    # 3. テストファイルを実行:
+    #    python tests/test_async_room.py
     unittest.main()
